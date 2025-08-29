@@ -515,7 +515,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
         console.log("matchmatchmatch=>",match);
         const auto_add_to_cart = ["M","Black"];
-        if(auto_add_to_cart == selectedValues){ 
+        if(JSON.stringify(auto_add_to_cart) == JSON.stringify(selectedValues)){ 
             const autoproduct = autoaddProduct.find(v =>
                 JSON.stringify(v.options) === JSON.stringify(auto_add_to_cart)
             );
