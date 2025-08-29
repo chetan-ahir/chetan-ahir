@@ -514,9 +514,13 @@ document.addEventListener("DOMContentLoaded", function () {
           JSON.stringify(v.options) === JSON.stringify(selectedValues)
         );
         const auto_add_to_cart = ["M","Black"];
-        const autoctart = auto_add_to_cart.find(v =>
+        {% comment %} const autoctart = auto_add_to_cart.find(v =>
           JSON.stringify(v) === JSON.stringify(selectedValues)
-        );
+        ); {% endcomment %}
+        const autoctart = arraysEqual(auto_add_to_cart, b) {
+            return JSON.stringify(a) === JSON.stringify(selectedValues);
+        }
+
         console.log("matchmatchmatch=>",match);
         console.log("autoctartautoctart=>",autoctart);
         if(autoctart != ""){ 
