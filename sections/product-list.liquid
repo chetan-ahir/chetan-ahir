@@ -10,6 +10,331 @@
             padding-bottom:{{section.settings.bottom_padding | times: 0.50 | round:0}}px
         }
     }
+    .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.product_wrapper h2 {
+    font-family: Lustria;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 400;
+    line-height: clamp(28px, 3vw, 43.2px);
+    text-align: left;
+}
+.product_image {
+    position: relative;
+    height: clamp(70vh,4vw,444px);
+}
+span.open_modal {
+    position: absolute;
+    right: var(--popup_position_right);
+    top: var(--popup_position_top);
+    display: inline-block;
+    cursor: pointer;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    left: 0;
+    right: 0;
+    align-items: center;
+    justify-content: center;
+    z-index: 9;
+}
+.modal_content {
+    width: 310px;
+    background: #fff;
+    position: relative;
+    padding: 30px 15px 15px;
+}
+.modal .close {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    transform: rotateX(45deg);
+    font-size: 25px;
+    line-height: normal;
+    cursor: pointer;
+}
+.product_image img {
+    width: auto;
+    max-width: 433px;
+    object-fit: cover;
+    height: 100%;
+}
+.product_grid {
+    display: grid;
+    grid-template-columns: repeat(var(--desktop_grid), auto);
+    gap: var(--grid_gap);
+}
+.product_info {
+    display: flex;
+    gap: 8px;
+}
+.product_info img {
+    width: 120px;
+    height: 180px;
+    object-fit: cover;
+}
+.product_info h1 {
+    font-family: Jost;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 19.2px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+.product_info p {
+    font-family: Jost;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 15.4px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+.product_info p.product_price {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    text-align: left;
+    color: #000;
+    font-family: 'Lustria';
+}
+.product-action-info {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.color_option {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    margin: 0;
+}
+.variant_id{
+    height: 0;
+    opacity: 0;
+}
+.product-action-info p {
+    margin: 0;
+}
+ul.color_option li:before {
+    content: "";
+    width: 5px;
+    height: 100%;
+    background-color: var(--color_value);
+    display: block;
+    border-right: 1px solid #000;
+}
+ul.color_option li {
+    width: 100%;
+    border: 1px solid;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    font-family: Jost;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    height: 40px;
+}
+.size_option_wrp {
+    margin-top: 10px;
+}
+select.size_option {
+    height: 40px;
+    width: 100%;
+    padding-left: 10px;
+    font-family: Jost;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    appearance: none;
+    cursor: pointer;
+}
+.color_option li label {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    cursor: pointer;
+}
+.color_option li input:checked + label {
+    background-color: #000;
+    color: #fff;
+}
+.color_option li input {
+    position: absolute;
+    opacity: 0;
+}
+.button_action {
+    background-color: #000;
+    color: #fff;
+    height: 40px;
+    font-family: Jost;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20.48px;
+    text-align: center;
+    color: #fff;
+    background: linear-gradient(to right, #fff544 50%, #000 50%) right;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: 200%;
+    gap: 15px;
+    height: 50px;
+    text-decoration: none;
+    transition: .5s ease-out;
+    text-transform: uppercase;
+    margin-top: 15px;
+    border: 0;
+    cursor: pointer;
+}
+.button_action:hover img {
+    filter: brightness(0);
+}
+.button_action:hover {
+    background-position: left;
+    color: #000;
+}
+.button_action[disabled] {
+    cursor: no-drop;
+}
+@media screen and (min-width:1024px) and (max-width:1440px){
+    .product_image img {
+        width: 100%;
+    }
+}
+@media screen and (max-width:1024px){
+    .product_grid.grid_columns {
+        --desktop_grid: 2 !important;
+        padding: 0px;
+    }
+    .product_image img {
+        max-width: 100%;
+    }
+}
+@media screen and (max-width:767px){
+    .product_wrapper h2 {
+        text-align: center;
+    }    
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+@media screen and (max-width:550px){
+    .product_grid.grid_columns {
+        padding: 0px;
+        --grid_gap: 4px !important;
+    }
+    .product_image {
+        height: clamp(186px, 4vw, 444px);
+    }
+}
+@media screen and (min-width:2800px){
+    .container {
+        max-width: 2840px;
+    }
+    .product_grid{
+        --grid_gap: 40px !important;
+    }
+    .product_wrapper h2 {
+        font-size: clamp(24px, 3vw, 80px);
+        line-height: clamp(28px, 3vw, 90px);
+    }
+    .product_image {
+        height: clamp(50vh, 4vw, 444px);
+    }
+    .product_image img {
+        width: 100%;
+        max-width: max-content;
+    }
+    span.open_modal svg {
+        width: 45px;
+        height: 45px;
+    }
+    .modal_content {
+        width: 710px;
+        padding: 50px 30px 30px;
+    }
+    .modal .close{
+        font-size: 50px;
+    }
+    .product_info {
+        gap: 25px;
+    }
+    .product_info img {
+        width: 320px;
+        height: 380px;
+        object-fit: cover;
+    }
+    .product_info h1 {
+        font-size: 40px;
+        line-height: normal;
+    }
+    .product_info p.product_price {
+        font-size: 40px;
+        line-height: normal;
+    }
+    .product_info p.product_price {
+        font-size: 40px;
+        line-height: normal;
+        margin: 0;
+    }
+    .product_info p {
+        font-size: 30px;
+        margin: 0;
+        line-height: normal;
+    }
+    .product-action-info p {
+        margin: 0;
+        font-size: 30px;
+    }
+    select.size_option {
+        height: auto;
+        padding: 10px 0;
+        padding-left: 20px;
+        font-size: 30px;
+        line-height: normal;
+    }
+    ul.color_option li{
+        height: auto;
+    }
+    .color_option li label{
+        font-size: 30px;
+        padding: 20px;
+    }
+    .button_action{
+        font-size: 43px;
+        line-height: 55px;
+        width: 100%;
+        gap: 48px;
+        height: 117px;
+    }
+    .button_action img {
+        width: 60px;
+    }
+}
+
 </style>
 <div class="product_wrapper container section-{{ section.id }}">
     {% if section.settings.title != blank %}    
@@ -102,6 +427,42 @@
         {% endfor %}
     </div>
 </div>
+<script>
+    // Get the modal
+var modals = document.querySelectorAll(".modal");
+// Get the button that opens the modal
+var btns = document.querySelectorAll(".open_modal");
+btns.forEach(function(btn){
+    btn.addEventListener("click",function(e){
+        modals.forEach(function(modal){
+            modal.style.display = "none";        
+        });
+        const data_id = e.currentTarget.getAttribute('data-id')
+        var modal = document.getElementById(data_id);
+        modal.style.display = "flex";
+    });
+});
+// Get the <span> element that closes the modal
+var closes = document.querySelectorAll(".close");
+
+// When the user clicks on the close button
+closes.forEach(function(btn){
+    btn.addEventListener("click",function(e){
+        var modal = e.target.closest('.modal')
+        modal.style.display = "none";        
+    });
+});
+
+// model hide When the user clicks on out side the modal
+window.onclick = function(event) {
+    var modal = event.target.closest('.modal')
+    if (event.target == modal) {
+        modals.forEach(function(modal){
+            modal.style.display = "none";        
+        });    
+    }
+}
+</script>
 {% schema %}
 {
     "name": "Products Listing",
