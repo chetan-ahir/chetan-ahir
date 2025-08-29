@@ -35,7 +35,7 @@
       "type": "new-header",
       "name": "Header",
       "settings": {
-        "logo": "shopify://shop_images/logo.svg",
+        "logo": "shopify://shop_images/logo-image.png",
         "note_text": "Find the ideal gift for your loved ones.",
         "button_text": "Shop Now",
         "button_link": "#"
