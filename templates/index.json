@@ -43,6 +43,7 @@
       "name": "Test Banner",
       "settings": {
         "banner_image": "shopify://shop_images/banner-image_5fd37bf5-938b-47dc-b1d9-b3f74571a237.png",
+        "banner_image_mobile": "shopify://shop_images/banner-image-mobile.png",
         "title": "The Gift Guide",
         "description": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
         "button_text": "Shop Now",
