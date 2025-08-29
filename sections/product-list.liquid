@@ -517,8 +517,8 @@ document.addEventListener("DOMContentLoaded", function () {
         {% comment %} const autoctart = auto_add_to_cart.find(v =>
           JSON.stringify(v) === JSON.stringify(selectedValues)
         ); {% endcomment %}
-        const autoctart = arraysEqual(auto_add_to_cart, b) {
-            return JSON.stringify(a) === JSON.stringify(selectedValues);
+        const autoctart = arraysEqual(auto_add_to_cart, selectedValues) {
+            return JSON.stringify(auto_add_to_cart) === JSON.stringify(selectedValues);
         }
 
         console.log("matchmatchmatch=>",match);
