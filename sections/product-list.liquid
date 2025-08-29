@@ -427,7 +427,7 @@ select.size_option {
     </div>
 </div>
 <script>
-    // Get the modal
+// Get the modal
 var modals = document.querySelectorAll(".modal");
 // Get the button that opens the modal
 var btns = document.querySelectorAll(".open_modal");
@@ -461,6 +461,91 @@ window.onclick = function(event) {
         });    
     }
 }
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".product-card").forEach(function (card) {
+    const addBtn = card.querySelector(".btn-add-to-cart");
+    {% comment %} const qtyInput = card.querySelector(".qty-input"); {% endcomment %}
+    const variantData = JSON.parse(card.querySelector(".variant-data").textContent);
+
+
+    // Object to hold selected options
+    let selectedOptions = {};
+
+     // Handle swatches (e.g. Color)
+    card.querySelectorAll(".swatch").forEach(function (swatch) {
+      swatch.addEventListener("change", function () {
+        const group = swatch.closest(".option-group");
+        const optionIndex = group.dataset.optionIndex;
+
+        // Clear old selection
+        group.querySelectorAll(".swatch").forEach(s => s.classList.remove("active"));
+        swatch.classList.add("active");
+        selectedOptions[optionIndex] = swatch.value;
+        validateVariant();
+      });
+    });
+    // Handle dropdowns (e.g. Size)
+    card.querySelectorAll(".size-select").forEach(function (dropdown) {
+      dropdown.addEventListener("change", function () {
+        const group = dropdown.closest(".option-group");
+        const optionIndex = group.dataset.optionIndex;
+        selectedOptions[optionIndex] = dropdown.value;
+        validateVariant();
+      });
+    });
+
+    // If check variant is selected then add to cart button disabled false 
+    function validateVariant() {
+      const selectedValues = Object.values(selectedOptions);
+      if (selectedValues.length === card.querySelectorAll(".option-group").length &&
+          !selectedValues.includes("")) {
+
+
+        const match = variantData.find(v =>
+          JSON.stringify(v.options) === JSON.stringify(selectedValues)
+        );
+console.log("matchmatch=>",match);
+        if (match && match.available) {
+          addBtn.dataset.variantId = match.id;
+          addBtn.disabled = false;
+        } else {
+          addBtn.disabled = true;
+          addBtn.removeAttribute("data-variant-id");
+          console.log("Variant not available");
+        }
+      }
+    }
+    // Add to cart
+    addBtn.addEventListener("click", function () {
+      const variantId = addBtn.dataset.variantId;
+      if (!variantId) {
+        alert("Please select all options");
+        return;
+      }
+
+      fetch("/cart/add.js", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          id: variantId,
+          quantity: 1
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log("Added to cart:", data);
+        alert(`Added ${data.quantity} x ${data.title} to cart`);
+      })
+      .catch(err => {
+        console.error("Error:", err);
+        alert("Something went wrong!");
+      });
+    });
+  });
+});
 </script>
 {% schema %}
 {
