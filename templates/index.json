@@ -50,10 +50,80 @@
         "button_link": "#",
         "bottom_line_text": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
       }
+    },
+    "product_list_fWFi7a": {
+      "type": "product-list",
+      "blocks": {
+        "product_fyytG9": {
+          "type": "product",
+          "settings": {
+            "product": "black-leather-bag",
+            "popup_btn_position_top": 20,
+            "popup_btn_position_right": 20
+          }
+        },
+        "product_anrLhx": {
+          "type": "product",
+          "settings": {
+            "product": "blue-silk-tuxedo",
+            "popup_btn_position_top": 20,
+            "popup_btn_position_right": 20
+          }
+        },
+        "product_V89Fi3": {
+          "type": "product",
+          "settings": {
+            "product": "chequered-red-shirt",
+            "popup_btn_position_top": 20,
+            "popup_btn_position_right": 20
+          }
+        },
+        "product_3iXFck": {
+          "type": "product",
+          "settings": {
+            "product": "classic-leather-jacket",
+            "popup_btn_position_top": 20,
+            "popup_btn_position_right": 20
+          }
+        },
+        "product_6HcHGw": {
+          "type": "product",
+          "settings": {
+            "product": "classic-varsity-top",
+            "popup_btn_position_top": 20,
+            "popup_btn_position_right": 20
+          }
+        },
+        "product_Jet8n4": {
+          "type": "product",
+          "settings": {
+            "product": "dark-denim-top",
+            "popup_btn_position_top": 20,
+            "popup_btn_position_right": 20
+          }
+        }
+      },
+      "block_order": [
+        "product_fyytG9",
+        "product_anrLhx",
+        "product_V89Fi3",
+        "product_3iXFck",
+        "product_6HcHGw",
+        "product_Jet8n4"
+      ],
+      "name": "Products Listing",
+      "settings": {
+        "title": "",
+        "product_column": 3,
+        "grid_gap": 20,
+        "top_padding": 40,
+        "bottom_padding": 40
+      }
     }
   },
   "order": [
     "featured_collection",
-    "ecom_banner_DPWRm9"
+    "ecom_banner_DPWRm9",
+    "product_list_fWFi7a"
   ]
 }
