@@ -515,7 +515,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add to cart
     addBtn.addEventListener("click", function (e) {
       const variantId = addBtn.dataset.variantId;
-      const btnadd = e.target;  
+      const btnadd = e.currentTarget;  
       console.log("btnaddbtnaddbtnadd=>",btnadd);
       if (!variantId) {
         alert("Please select all options");
