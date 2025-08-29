@@ -58,16 +58,16 @@
           "type": "product",
           "settings": {
             "product": "black-leather-bag",
-            "popup_btn_position_top": 20,
-            "popup_btn_position_right": 20
+            "popup_btn_position_top": 55,
+            "popup_btn_position_right": 32
           }
         },
         "product_anrLhx": {
           "type": "product",
           "settings": {
             "product": "blue-silk-tuxedo",
-            "popup_btn_position_top": 20,
-            "popup_btn_position_right": 20
+            "popup_btn_position_top": 49,
+            "popup_btn_position_right": 6
           }
         },
         "product_V89Fi3": {
@@ -75,7 +75,7 @@
           "settings": {
             "product": "chequered-red-shirt",
             "popup_btn_position_top": 20,
-            "popup_btn_position_right": 20
+            "popup_btn_position_right": 32
           }
         },
         "product_3iXFck": {
@@ -90,16 +90,16 @@
           "type": "product",
           "settings": {
             "product": "classic-varsity-top",
-            "popup_btn_position_top": 20,
-            "popup_btn_position_right": 20
+            "popup_btn_position_top": 23,
+            "popup_btn_position_right": 46
           }
         },
         "product_Jet8n4": {
           "type": "product",
           "settings": {
             "product": "dark-denim-top",
-            "popup_btn_position_top": 20,
-            "popup_btn_position_right": 20
+            "popup_btn_position_top": 38,
+            "popup_btn_position_right": 15
           }
         }
       },
@@ -113,7 +113,7 @@
       ],
       "name": "Products Listing",
       "settings": {
-        "title": "",
+        "title": "Tisso vison in the wild",
         "product_column": 3,
         "grid_gap": 20,
         "top_padding": 40,
