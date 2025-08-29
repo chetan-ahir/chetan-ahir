@@ -573,7 +573,7 @@ document.addEventListener("DOMContentLoaded", function () {
             btnadd.querySelector('span').innerText = "Add To cart";
         },2000);
         const autopro = document.getElementById("auto_add_to_cart").value;
-        if(autopro ==""){
+        if(autopro !=""){
             fetch("/cart/add.js", {
                 method: "POST",
                 headers: {
@@ -586,7 +586,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
             })
             .then(res => res.json())
-            .then(data => {});
+            .then(datas => {console.log("dattttaaaa",datas)});
         }
 
       })
