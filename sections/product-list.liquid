@@ -496,6 +496,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // If check variant is selected then add to cart button disabled false 
     function validateVariant() {
       const selectedValues = Object.values(selectedOptions);
+      console.log("selectedValues=>",selectedValues);
       if (selectedValues.length === card.querySelectorAll(".option-group").length &&
           !selectedValues.includes("")) {
 
