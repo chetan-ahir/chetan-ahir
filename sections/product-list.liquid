@@ -537,6 +537,10 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(data => {
         console.log("Added to cart:", data);
         alert(`Added ${data.quantity} x ${data.title} to cart`);
+        btnadd.querySelector('span').innerText = "Added To cart";
+        setTimeout(function(){
+            btnadd.querySelector('span').innerText = "Add To cart";
+        },1000);
       })
       .catch(err => {
         console.error("Error:", err);
