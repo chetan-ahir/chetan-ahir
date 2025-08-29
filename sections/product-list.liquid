@@ -467,7 +467,6 @@ document.addEventListener("DOMContentLoaded", function () {
     {% comment %} const qtyInput = card.querySelector(".qty-input"); {% endcomment %}
     const variantData = JSON.parse(card.querySelector(".variant-data").textContent);
 
-
     // Object to hold selected options
     let selectedOptions = {};
 
@@ -500,11 +499,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (selectedValues.length === card.querySelectorAll(".option-group").length &&
           !selectedValues.includes("")) {
 
-
         const match = variantData.find(v =>
           JSON.stringify(v.options) === JSON.stringify(selectedValues)
         );
-console.log("matchmatch=>",match);
         if (match && match.available) {
           addBtn.dataset.variantId = match.id;
           addBtn.disabled = false;
@@ -516,8 +513,10 @@ console.log("matchmatch=>",match);
       }
     }
     // Add to cart
-    addBtn.addEventListener("click", function () {
+    addBtn.addEventListener("click", function (e) {
       const variantId = addBtn.dataset.variantId;
+      const btnadd = e.target;  
+      console.log("btnaddbtnaddbtnadd=>",btnadd);
       if (!variantId) {
         alert("Please select all options");
         return;
