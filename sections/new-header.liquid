@@ -1,0 +1,70 @@
+<header>
+    <div class="header_wraper container">
+        <div class="logo">
+            <img src="{{ section.settings.logo | image_url }}" alt="" height="{{ section.settings.logo.height }}" width="{{ section.settings.logo.width }}">
+        </div>
+        {% if section.settings.note_text != blank %}
+            <div class="note_text small_hide">
+                <p>{{ section.settings.note_text }}</p>
+            </div>
+        {% endif %}
+        {% if section.settings.button_text != blank %}
+            <div class="header_action_btn small_hide">
+                <a href="{{ section.settings.button_link }}">{{ section.settings.button_text }} <img src="{{ 'arrow-icon.png' | asset_img_url }}" height="" width="" alt=""></a>
+            </div>
+        {% endif %}
+
+        {% comment %} Toggle button for mobile device {% endcomment %}
+        <details class="mobile_menu large_hide">
+            <summary class="toggle_menu"><img src="{{ 'toggle_open.png' | asset_img_url }}" class="open_btn" height="" width="" alt=""><img src="{{ 'toggle_close.png' | asset_img_url }}" alt="" height="" width="" class="close_btn"></summary>
+            <div class="mobile_content">
+                {% if section.settings.note_text != blank %}
+                    <div class="note_text">
+                        <p>{{ section.settings.note_text }}</p>
+                    </div>
+                {% endif %}
+                {% if section.settings.button_text != blank %}
+                    <div class="header_action_btn ">
+                        <a href="{{ section.settings.button_link }}">{{ section.settings.button_text }} <img src="{{ 'arrow-icon.png' | asset_img_url }}" height="" width="" alt=""></a>
+                    </div>
+                {% endif %}
+            </div>
+        </details>
+    </div> 
+</header>
+
+{% schema %}
+{
+    "name": "Header",
+    "class": "header-section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Choose Logo"
+        },
+        {
+            "type": "text",
+            "id": "note_text",
+            "label": "Note Text",
+            "default":"Find the ideal gift for your loved ones."
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default":"Shop Now"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button URL"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Header"
+        }
+    ]
+}
+{% endschema %}
