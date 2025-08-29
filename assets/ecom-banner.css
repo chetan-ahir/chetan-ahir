@@ -96,7 +96,7 @@
         width: 100%;
         height: auto;
     }
-}
+} 
 @media screen and (max-width:1200px) {
     .banner_content p {
         margin: 25px 0;
