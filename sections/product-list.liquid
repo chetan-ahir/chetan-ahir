@@ -513,9 +513,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const match = variantData.find(v =>
           JSON.stringify(v.options) === JSON.stringify(selectedValues)
         );
-        console.log("matchmatchmatch=>",match);
         const auto_add_to_cart = ["M","Black"];
-        if(JSON.stringify(auto_add_to_cart) == JSON.stringify(selectedValues)){ 
+        const autoctart = auto_add_to_cart.find(v =>
+          JSON.stringify(v) === JSON.stringify(selectedValues)
+        );
+        console.log("matchmatchmatch=>",match);
+        console.log("autoctartautoctart=>",autoctart);
+        if(autoctart != ""){ 
             const autoproduct = autoaddProduct.find(v =>
                 JSON.stringify(v.options) === JSON.stringify(auto_add_to_cart)
             );
