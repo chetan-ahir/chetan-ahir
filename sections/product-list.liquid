@@ -503,6 +503,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const match = variantData.find(v =>
           JSON.stringify(v.options) === JSON.stringify(selectedValues)
         );
+      console.log("matchmatchmatch=>",match);
+
         if (match && match.available) {
           addBtn.dataset.variantId = match.id;
           addBtn.disabled = false;
