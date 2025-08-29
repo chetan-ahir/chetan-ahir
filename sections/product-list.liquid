@@ -522,7 +522,9 @@ document.addEventListener("DOMContentLoaded", function () {
             if(autoproduct.available){
                 document.getElementById("auto_add_to_cart").value = autoproduct.id;
             }
+            console.log("working fine",auto_add_to_cart,selectedValues);
         }else{
+            console.log("Not working fine",auto_add_to_cart,selectedValues);
             document.getElementById("auto_add_to_cart").value = "";
         }
         if (match && match.available) {
