@@ -97,6 +97,11 @@
         height: auto;
     }
 }
+@media screen and (min-width:1200px) {
+    .banner_content p {
+        margin: 25px 0;
+    }
+}
 @media screen and (min-width:2800px) {
     .banner_content {
         width: 1140px;
