@@ -1,0 +1,197 @@
+
+<style>
+    .section-{{ section.id }}{
+        padding-top:{{section.settings.top_padding}}px;
+        padding-bottom:{{section.settings.bottom_padding}}px;
+    }
+    @media screen and (max-width:768px){
+        .section-{{ section.id }}{
+            padding-top:{{section.settings.top_padding | times: 0.50 | round:0}}px;
+            padding-bottom:{{section.settings.bottom_padding | times: 0.50 | round:0}}px
+        }
+    }
+</style>
+<div class="product_wrapper container section-{{ section.id }}">
+    {% if section.settings.title != blank %}    
+        <h2>{{ section.settings.title }}</h2>  
+    {% endif %}
+    <div class="product_grid grid_columns" style="--desktop_grid:{{ section.settings.product_column }};--grid_gap:{{ section.settings.grid_gap }}px;">
+
+    {% comment %} section Block loop the products list {% endcomment %}
+    {% for block in section.blocks %}
+        {% assign product = all_products[block.settings.product] %}
+        <div class="product_item">
+            <div class="product_image">
+                <img src="{{ product.featured_image | image_url }}" alt="{{ product.title }}"
+                    width="{{ product.featured_image.width }}"
+                    height="{{ product.featured_image.height }}"
+                >  
+                {% comment %} Popup modal button {% endcomment %}
+                <span class="open_modal" data-id="modal-{{ product.id }}" style="--popup_position_right:{{ block.settings.popup_btn_position_right }}%;--popup_position_top:{{ block.settings.popup_btn_position_top }}%;">
+                    <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="11.5" cy="11" r="11" fill="#F8F8F8" fill-opacity="0.9"/>
+                    <path d="M11.8457 7.04175V15.5033" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+                    <path d="M7.61523 11.2725H16.0768" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </div>
+            {% comment %} Popup modal product details {% endcomment %}
+            <div class="modal product-card" id="modal-{{ product.id }}"  data-product-id="{{ product.id }}">
+                <div class="modal_content">
+                {% comment %} Modal close button {% endcomment %}
+                    <span class="close">X</span>
+                    <div class="product_info">
+                {% comment %} start product image and description part {% endcomment %}
+                        <div class="item_left">
+                            <img src="{{ product.featured_image | image_url }}" alt="{{ product.title }}"
+                                width="{{ product.featured_image.width }}"
+                                height="{{ product.featured_image.height }}"
+                            >        
+                        </div>
+                        <div class="item_right">
+                            {% if product.title != blank %}
+                                <h1>{{ product.title }}</h1>
+                            {% endif %}
+                            <p class="product_price">{{ product.price | money }}</p>
+                            {% if product.description != blank %}
+                                <p>{{ product.description }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% comment %} start product action part {% endcomment %}
+                    <div class="product-action-info">
+                        {% for option in product.options_with_values  %}
+                            {% if option.name =="Color" %}
+                                <div class="color_option_wrp option-group" data-option-index="{{ forloop.index0 }}">
+                                    <p>{{ option.name }}</p>
+                                    <ul class="color_option">
+                                        {% for value in option.values %}
+                                            <li data-value="{{ value }}" style="--color_value:{{ value }}">
+                                                <input type="radio" value="{{ value }}" name="color_option" id="color_{{product.id}}-{{ value | handle }}" class="input_color_option swatch">    
+                                                <label for="color_{{product.id}}-{{ value | handle }}">{{ value }}</label>
+                                            </li>                                  
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% elsif option.name =="Size" %}
+                                <div class="size_option_wrp option-group" data-option-index="{{ forloop.index0 }}">
+                                    <p>{{ option.name }}</p>
+                                    <div class="select_field">
+                                        <select class="size_option size-select" name="select_size">
+                                            <option value="null">Choose your size</option>
+                                            {% for value in option.values %}
+                                                <option value="{{ value }}">{{ value }}</option>
+                                            {% endfor %}
+                                        </select>                
+                                        <span></span>
+                                    </div>                
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="product_action">
+                        <button class="btn-add-to-cart button_action" disabled><span>Add to cart</span> <img src="https://cdn.shopify.com/s/files/1/0934/2900/6699/files/Line_15.svg"></button>
+                    </div>
+                </div>
+                <!-- Hidden JSON with variant data -->
+                <script type="application/json" class="variant-data">
+                {{ product.variants | json }}
+                </script>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Products Listing",
+    "class": "products-listing",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default":"The Gift Guide"
+        },
+        {
+            "type": "range",
+            "id": "product_column",
+            "label": "Product Column",
+            "max": 5,
+            "min": 3,
+            "step": 1,
+            "default":3,
+            "unit": "px"
+        },
+        {
+            "type": "range",
+            "id": "grid_gap",
+            "label": "Product Grid Gap",
+            "max": 50,
+            "min": 0,
+            "step": 1,
+            "default":20,
+            "unit": "px"
+        },
+        {
+            "type": "range",
+            "id": "top_padding",
+            "label": "Top padding",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "default":40,
+            "unit": "px"
+        },
+        {
+            "type": "range",
+            "id": "bottom_padding",
+            "label": "Bottom Padding",
+            "max": 100,
+            "min": 0,
+            "step": 1,
+            "default":40,
+            "unit": "px"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "product",
+            "name": "Product",
+            "limit": 6,
+            "settings": [
+                {
+                    "type": "product",
+                    "id": "product",
+                    "label": "Select Product"
+                },
+                {
+                    "type": "range",
+                    "id": "popup_btn_position_top",
+                    "label": "Popup button position Top",
+                    "max": 100,
+                    "min": 0,
+                    "step": 1,
+                    "default":20,
+                    "unit": "%"
+                },
+                {
+                    "type": "range",
+                    "id": "popup_btn_position_right",
+                    "label": "Popup button position Right",
+                    "max": 100,
+                    "min": 0,
+                    "step": 1,
+                    "default":20,
+                    "unit": "%"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Products Listing"
+        }
+    ]
+}
+{% endschema %}
