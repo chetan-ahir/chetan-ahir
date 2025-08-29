@@ -30,9 +30,20 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "new_header_6NNYME": {
+      "type": "new-header",
+      "name": "Header",
+      "settings": {
+        "logo": "shopify://shop_images/logo.svg",
+        "note_text": "Find the ideal gift for your loved ones.",
+        "button_text": "Shop Now",
+        "button_link": "#"
+      }
     }
   },
   "order": [
-    "header"
+    "header",
+    "new_header_6NNYME"
   ]
 }
