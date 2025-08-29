@@ -98,7 +98,14 @@
         color: rgba(var(--color-foreground), 0.75);
         background-color: rgb(var(--color-background));
       }
-
+  @font-face {
+    font-family: Jost;
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    src: url("//chetan-ahir-48-teststore.myshopify.com/cdn/fonts/jost/jost_n3.a5df7448b5b8c9a76542f085341dff794ff2a59d.woff2?h1=Y2hldGFuLWFoaXItNDgtdGVzdHN0b3JlLmFjY291bnQubXlzaG9waWZ5LmNvbQ&hmac=2b1090696cb958282b6f8df8670f38db6be4fd63aa0dd731c13a9bf786315fe0") format("woff2"),
+        url("//chetan-ahir-48-teststore.myshopify.com/cdn/fonts/jost/jost_n3.882941f5a26d0660f7dd135c08afc57fc6939a07.woff?h1=Y2hldGFuLWFoaXItNDgtdGVzdHN0b3JlLmFjY291bnQubXlzaG9waWZ5LmNvbQ&hmac=2a5cabf108d12ea59d19ed619390f793e139f180c2f176296a3b99466d9b1715") format("woff");
+  }
       :root {
         --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
         --font-body-style: {{ settings.type_body_font.style }};
