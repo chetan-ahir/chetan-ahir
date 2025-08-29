@@ -1,6 +1,9 @@
 .banner_wrapper {
     position: relative;
 }
+.banner_image {
+    line-height: 0;
+}
 .banner_image img {
     width: 100%;
     height: 100%;
