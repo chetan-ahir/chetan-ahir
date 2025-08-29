@@ -121,6 +121,8 @@
         margin-left: -30px;
         width: 100%;
         text-align: center;
+        z-index: 99;
+        position: relative;
     }
     [open] .open_btn {
         display: none;
@@ -142,25 +144,27 @@
         text-align: center;
     }
     .mobile_content {
-        position: absolute;
-        margin-top: 32px;
+        position: relative;
+        margin-top: 24px;
         background: #F2F2F2;
         width: 100%;
-        left: 0;
-        right: 0;
         z-index: 999;
-        text-align: center;
         padding: 25px 0;
     }
     .header_action_btn a{
         margin:auto;
     }
     .mobile_menu {
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        position: absolute;
+        left: 0px;
+        width: 100%;
+        z-index: 0;
+        top: 25px;
+        bottom: 0;
+        margin: auto;
+    }
+    details.mobile_menu summary {
+        margin-left: 15px;
     }
 }
 @media screen and (min-width:1920px){
