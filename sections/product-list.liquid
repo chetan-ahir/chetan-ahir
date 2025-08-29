@@ -517,10 +517,10 @@ document.addEventListener("DOMContentLoaded", function () {
         {% comment %} const autoctart = auto_add_to_cart.find(v =>
           JSON.stringify(v) === JSON.stringify(selectedValues)
         ); {% endcomment %}
-        const autoctart = arraysEqual(auto_add_to_cart, selectedValues) {
+         function arraysEqual(auto_add_to_cart, selectedValues) {
             return JSON.stringify(auto_add_to_cart) === JSON.stringify(selectedValues);
         }
-
+        const autoctart = arraysEqual(auto_add_to_cart,selectedValues);
         console.log("matchmatchmatch=>",match);
         console.log("autoctartautoctart=>",autoctart);
         if(autoctart != ""){ 
