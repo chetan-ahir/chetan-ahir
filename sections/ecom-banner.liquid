@@ -1,0 +1,84 @@
+{{ 'ecom-banner.css' | asset_url | stylesheet_tag }} 
+<div class="banner_wrapper">
+    <div class="banner_image">
+        <picture>
+            <source media="(max-width:550px)" srcset="{{ section.settings.banner_image_mobile | image_url }}">
+            <source media="(min-width:551px)" srcset="{{ section.settings.banner_image | image_url }}">
+            <img src="{{ section.settings.banner_image | image_url }}" alt="{{ section.settings.banner_image.alt }}" 
+                width="{{ section.settings.banner_image.width }}"
+                height="{{ section.settings.banner_image.height }}"
+            >
+          </picture>
+    </div>
+    <div class="banner_content">
+        <div class="text_block">
+            {% if section.settings.title != blank %}
+                <h1>{{ section.settings.title }}</h1>
+            {% endif %}
+            {% if section.settings.description != blank %}
+                <p>{{ section.settings.description }}</p>
+            {% endif %}
+            {% if section.settings.button_text != blank %}
+                <a href="{{ section.settings.button_link }}">{{ section.settings.button_text }} <img src="{{ 'arrow-icon.png' | asset_img_url }}"></a>
+            {% endif %}
+        </div>
+    </div>
+</div> 
+{% if section.settings.bottom_line_text != blank %}
+    <div class="bottom_line_text">
+        <p>{{ section.settings.bottom_line_text }}</p>
+    </div>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Test Banner",
+    "class": "main-banner",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "banner_image",
+            "label": "Choose Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "banner_image_mobile",
+            "label": "Choose Mobile Image"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default":"The Gift Guide"
+        },
+        {
+            "type": "textarea",
+            "id": "description",
+            "label": "Sort Content"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default":"Shop Now"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button URL"
+        },
+        {
+            "type": "text",
+            "id": "bottom_line_text",
+            "label": "Bottom line text",
+            "default":"SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+        },
+
+    ],
+    "presets": [
+        {
+            "name": "Test Banner"
+        }
+    ]
+}
+{% endschema %}
