@@ -424,6 +424,14 @@ select.size_option {
             </div>
         </div>
         {% endfor %}
+        <!-- Hidden JSON with variant data -->
+        {% assign auto_product = all_products[section.settings.product] %}
+            <input type="hidden" id="auto_add_to_cart">
+            {% if auto_product != blank %}              
+                <script type="application/json" class="auto-variant-data">
+                {{ auto_product.variants | json }}
+                </script>
+            {% endif %}
     </div>
 </div>
 <script>
@@ -462,6 +470,8 @@ window.onclick = function(event) {
     }
 }
 document.addEventListener("DOMContentLoaded", function () {
+    const autoaddProduct = JSON.parse(document.querySelector(".auto-variant-data").textContent);
+
   document.querySelectorAll(".product-card").forEach(function (card) {
     const addBtn = card.querySelector(".btn-add-to-cart");
     {% comment %} const qtyInput = card.querySelector(".qty-input"); {% endcomment %}
@@ -503,8 +513,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const match = variantData.find(v =>
           JSON.stringify(v.options) === JSON.stringify(selectedValues)
         );
-      console.log("matchmatchmatch=>",match);
-
+        console.log("matchmatchmatch=>",match);
+        const auto_add_to_cart = ["M","Black"];
+        if(auto_add_to_cart == selectedValues){ 
+            const autoproduct = autoaddProduct.find(v =>
+                JSON.stringify(v.options) === JSON.stringify(auto_add_to_cart)
+            );
+            if(autoproduct.available){
+                document.getElementById("auto_add_to_cart").value = autoproduct.id;
+            }
+        }else{
+            document.getElementById("auto_add_to_cart").value = "";
+        }
         if (match && match.available) {
           addBtn.dataset.variantId = match.id;
           addBtn.disabled = false;
@@ -542,6 +562,23 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function(){
             btnadd.querySelector('span').innerText = "Add To cart";
         },2000);
+        const autopro = document.getElementById("auto_add_to_cart").value;
+        if(autopro ==""){
+            fetch("/cart/add.js", {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                id: autopro,
+                quantity: 1
+                })
+            })
+            .then(res => res.json())
+            .then(data => {});
+        }
+
       })
       .catch(err => {
         console.error("Error:", err);
@@ -561,6 +598,12 @@ document.addEventListener("DOMContentLoaded", function () {
             "id": "title",
             "label": "Title",
             "default":"The Gift Guide"
+        },
+        {
+            "type": "product",
+            "id": "product",
+            "label": "Select Product",
+            "info": "When any product with variant options Black and Medium is added to the cart the “Soft Winter Jacket” should also be automatically added to the cart"
         },
         {
             "type": "range",
